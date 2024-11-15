@@ -1,0 +1,7 @@
+{
+  "name": "AirBnbArrendatario",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
