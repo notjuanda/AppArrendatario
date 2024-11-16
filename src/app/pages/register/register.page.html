@@ -1,0 +1,37 @@
+<ion-content>
+  <div class="container">
+    <div class="header">
+      <h1>
+        <ion-icon name="home-outline"></ion-icon> StayHub
+      </h1>
+    </div>
+
+    <div class="form-container">
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        <ion-item lines="none">
+          <ion-input placeholder="Full Name" formControlName="nombrecompleto" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-input placeholder="Email" formControlName="email" type="email"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-input placeholder="Phone" formControlName="telefono" type="tel"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-input placeholder="Password" formControlName="password" type="password"></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" type="submit" [disabled]="registerForm.invalid" class="btn-submit">
+          Registrarse
+        </ion-button>
+      </form>
+
+      <p class="switch">
+        <a (click)="goToLogin()">Presiona aqui para Iniciar Sesion</a>
+      </p>
+    </div>
+  </div>
+</ion-content>

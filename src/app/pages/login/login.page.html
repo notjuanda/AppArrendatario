@@ -1,0 +1,32 @@
+<ion-content>
+  <div class="container">
+    <div class="header">
+      <h1>Presta tus servicios</h1>
+      <img src="assets/images/phone-image.jpg" alt="Phone" />
+    </div>
+
+    <div class="form-container">
+      <h2>Iniciar Sesion</h2>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input formControlName="email" type="email" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input formControlName="password" type="password" required></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" type="submit" [disabled]="loginForm.invalid">
+          Iniciar Sesion
+        </ion-button>
+      </form>
+
+      <p class="signup">
+        ¿Usuario nuevo? <a (click)="goToRegister()">Registrate ahora</a>
+      </p>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,44 @@
+<ion-content>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>
+        <ion-icon name="home-outline"></ion-icon> StayHub
+      </h1>
+      <ion-button expand="block" class="btn-add" (click)="onAddProperty()">
+        Añade una nueva propiedad
+      </ion-button>
+    </div>
+
+    <!-- Property Listings -->
+    <div class="listings">
+      <h2>Lista de propiedades</h2>
+
+      <!-- Indicador de carga -->
+      <ion-spinner *ngIf="isLoading"></ion-spinner>
+
+      <!-- Mensaje si no hay propiedades -->
+      <div *ngIf="!isLoading && properties.length === 0" class="no-properties">
+        <p>No tienes propiedades.</p>
+        <ion-button (click)="onAddProperty()" class="btn-add">Añade tu primer propiedad</ion-button>
+      </div>
+
+      <!-- Lista de propiedades -->
+      <ion-list *ngIf="!isLoading && properties.length > 0">
+        <ion-item *ngFor="let property of properties" lines="none" class="property-card">
+          <div class="property-image">
+            <img [src]="property.photoUrl" alt="{{ property.name }}" />
+          </div>
+          <div class="property-details">
+            <h3>{{ property.name }}</h3>
+            <p>{{ property.city }}</p>
+            <p>${{ property.pricePerNight }} / night</p>
+          </div>
+          <ion-button fill="outline" color="dark" class="btn-edit" (click)="onEditProperty(property.id)">
+            Editar
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

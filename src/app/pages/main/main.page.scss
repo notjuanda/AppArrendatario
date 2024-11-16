@@ -1,0 +1,102 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      ion-icon {
+        margin-right: 8px;
+        font-size: 1.5rem;
+      }
+    }
+
+    .btn-add {
+      --background: #000;
+      --color: #fff;
+      --border-radius: 10px;
+      margin-top: 10px;
+    }
+  }
+
+  .no-properties {
+    text-align: center;
+    margin-top: 20px;
+
+    p {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .btn-add {
+      --background: #000;
+      --color: #fff;
+      --border-radius: 10px;
+    }
+  }
+
+  .listings {
+    margin-top: 20px;
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .property-card {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      background: #f7f7f7;
+      border-radius: 10px;
+      padding: 10px;
+
+      .property-image {
+        width: 80px;
+        height: 80px;
+        overflow: hidden;
+        border-radius: 10px;
+        margin-right: 10px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .property-details {
+        flex: 1;
+
+        h3 {
+          margin: 0;
+          font-size: 1rem;
+          font-weight: bold;
+        }
+
+        p {
+          margin: 0;
+          font-size: 0.9rem;
+          color: #666;
+        }
+      }
+
+      .btn-edit {
+        --border-radius: 8px;
+        font-size: 0.8rem;
+        padding: 5px 10px;
+      }
+    }
+  }
+}
