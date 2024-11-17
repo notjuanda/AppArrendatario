@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
     const user = await this.authService.getUser();
 
     if (user) {
-      this.router.navigate(['/main']);
+      this.router.navigate(['/tabs']);
     } else {
       this.router.navigate(['/login']);
     }

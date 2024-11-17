@@ -41,6 +41,6 @@ export class AuthService {
   }
 
   async logout(): Promise<void> {
-    await this.storage.remove('user'); // Elimina los datos del usuario
+    await this.storage.remove('user');
   }
 }

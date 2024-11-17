@@ -1,0 +1,50 @@
+.form-container {
+  padding: 1rem;
+}
+
+ion-card {
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+ion-card-title {
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4a4a4a;
+}
+
+.map-container {
+  height: 300px;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  margin-top: 1rem;
+}
+
+.interactive-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.counter-buttons ion-button {
+  --border-radius: 50%;
+  --background: #f4f4f4;
+  --color: #555;
+}
+
+.counter-display {
+  text-align: center;
+  width: 50px;
+  font-size: 1rem;
+  --padding-start: 0;
+}

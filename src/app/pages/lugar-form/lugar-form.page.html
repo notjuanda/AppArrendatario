@@ -1,0 +1,162 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ isEditMode ? 'Editar Lugar' : 'Crear Lugar' }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="lugarForm" (ngSubmit)="onSubmit()" class="form-container">
+    <!-- Detalles del lugar -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title><ion-icon name="home-outline"></ion-icon> Detalles del Lugar</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input formControlName="nombre" type="text" placeholder="Nombre del lugar"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Descripción</ion-label>
+          <ion-textarea formControlName="descripcion" placeholder="Describe el lugar"></ion-textarea>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Capacidades -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title><ion-icon name="people-outline"></ion-icon> Capacidades</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <!-- Cantidad de personas -->
+        <div class="interactive-input">
+          <ion-label class="label">Cantidad de Personas</ion-label>
+          <ion-buttons class="counter-buttons">
+            <ion-button color="light" (click)="decrement('cantPersonas')">
+              <ion-icon name="remove-outline"></ion-icon>
+            </ion-button>
+            <ion-input
+              readonly
+              formControlName="cantPersonas"
+              type="number"
+              class="counter-display"
+            ></ion-input>
+            <ion-button color="light" (click)="increment('cantPersonas')">
+              <ion-icon name="add-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </div>
+
+        <!-- Camas -->
+        <div class="interactive-input">
+          <ion-label class="label">Camas</ion-label>
+          <ion-buttons class="counter-buttons">
+            <ion-button color="light" (click)="decrement('cantCamas')">
+              <ion-icon name="remove-outline"></ion-icon>
+            </ion-button>
+            <ion-input
+              readonly
+              formControlName="cantCamas"
+              type="number"
+              class="counter-display"
+            ></ion-input>
+            <ion-button color="light" (click)="increment('cantCamas')">
+              <ion-icon name="add-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </div>
+
+        <!-- Baños -->
+        <div class="interactive-input">
+          <ion-label class="label">Baños</ion-label>
+          <ion-buttons class="counter-buttons">
+            <ion-button color="light" (click)="decrement('cantBanios')">
+              <ion-icon name="remove-outline"></ion-icon>
+            </ion-button>
+            <ion-input
+              readonly
+              formControlName="cantBanios"
+              type="number"
+              class="counter-display"
+            ></ion-input>
+            <ion-button color="light" (click)="increment('cantBanios')">
+              <ion-icon name="add-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </div>
+
+        <!-- Habitaciones -->
+        <div class="interactive-input">
+          <ion-label class="label">Habitaciones</ion-label>
+          <ion-buttons class="counter-buttons">
+            <ion-button color="light" (click)="decrement('cantHabitaciones')">
+              <ion-icon name="remove-outline"></ion-icon>
+            </ion-button>
+            <ion-input
+              readonly
+              formControlName="cantHabitaciones"
+              type="number"
+              class="counter-display"
+            ></ion-input>
+            <ion-button color="light" (click)="increment('cantHabitaciones')">
+              <ion-icon name="add-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </div>
+
+        <ion-item>
+          <ion-label>¿Tiene WiFi?</ion-label>
+          <ion-toggle formControlName="tieneWifi"></ion-toggle>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Precios -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title><ion-icon name="pricetag-outline"></ion-icon> Precios</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Precio por Noche</ion-label>
+          <ion-input formControlName="precioNoche" type="text" placeholder="Ej: 30.00"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Costo de Limpieza</ion-label>
+          <ion-input formControlName="costoLimpieza" type="text" placeholder="Ej: 5.00"></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Ubicación -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title><ion-icon name="location-outline"></ion-icon> Ubicación</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Ciudad</ion-label>
+          <ion-input formControlName="ciudad" type="text" placeholder="Ciudad"></ion-input>
+        </ion-item>
+
+        <div class="map-container">
+          <div #map id="map" style="height: 300px; width: 100%;"></div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Botón para enviar -->
+    <ion-footer class="form-footer">
+      <ion-button expand="block" type="submit" [disabled]="lugarForm.invalid" color="primary">
+        <ion-icon slot="start" [name]="isEditMode ? 'save-outline' : 'add-outline'"></ion-icon>
+        {{ isEditMode ? 'Guardar Cambios' : 'Crear Lugar' }}
+      </ion-button>
+    </ion-footer>
+  </form>
+</ion-content>
