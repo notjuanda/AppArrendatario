@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="profile-container">
+    <!-- Card del perfil -->
+    <div class="profile-card">
+      <div class="profile-info">
+        <h2>{{ user?.nombrecompleto }}</h2>
+        <p>{{ user?.email }}</p>
+        <p>Teléfono: {{ user?.telefono }}</p>
+      </div>
+    </div>
+    <div class="logout-section">
+      <ion-button expand="block" color="danger" (click)="logout()">
+        Cerrar sesión
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

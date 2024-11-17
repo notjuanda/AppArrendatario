@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon name="calendar-outline"></ion-icon> Reservas
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <!-- Header -->
+    <div class="listings-header">
+      <h2>Tus Propiedades</h2>
+    </div>
+
+    <!-- Indicador de carga -->
+    <ion-spinner *ngIf="isLoading"></ion-spinner>
+
+    <!-- Mensaje si no hay lugares -->
+    <div *ngIf="!isLoading && lugares.length === 0" class="no-properties">
+      <p>No tienes propiedades registradas.</p>
+    </div>
+
+    <!-- Lista de lugares -->
+    <div *ngIf="!isLoading && lugares.length > 0" class="property-grid">
+      <div *ngFor="let lugar of lugares" class="property-card">
+        <div class="property-image">
+          <img [src]="lugar.photo" alt="{{ lugar.name }}" />
+        </div>
+        <div class="property-details">
+          <h3>{{ lugar.name }}</h3>
+          <p>{{ lugar.city }}</p>
+          <p>${{ lugar.pricePerNight }} / noche</p>
+          <ion-button
+            expand="block"
+            color="primary"
+            (click)="onViewReservas(lugar.id)"
+          >
+            Ver Reservas
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

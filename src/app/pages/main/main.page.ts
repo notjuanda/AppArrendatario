@@ -39,6 +39,7 @@ export class MainPage implements OnInit {
           city: property.ciudad,
           pricePerNight: property.precioNoche,
           photos: property.fotos.length > 0 ? property.fotos : [{ url: 'assets/images/no-image.png' }],
+          currentPhotoIndex: 0,
         }));
         this.isLoading = false;
       },
@@ -47,6 +48,15 @@ export class MainPage implements OnInit {
         this.isLoading = false;
       }
     );
+  }
+
+  prevPhoto(property: any) {
+    property.currentPhotoIndex =
+      (property.currentPhotoIndex - 1 + property.photos.length) % property.photos.length;
+  }
+
+  nextPhoto(property: any) {
+    property.currentPhotoIndex = (property.currentPhotoIndex + 1) % property.photos.length;
   }
 
   onAddProperty() {

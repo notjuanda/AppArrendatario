@@ -29,7 +29,7 @@ export class LoginPage {
       this.authService.login({ email, password }).subscribe(
         (response) => {
           console.log('Login exitoso:', response);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/tabs']);
         },
         (error) => {
           console.error('Error en login:', error);
