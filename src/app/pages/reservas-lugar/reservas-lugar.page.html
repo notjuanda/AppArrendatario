@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-title>{{ lugar?.name }}</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
@@ -8,44 +8,75 @@
 </ion-header>
 
 <ion-content>
-  <ion-spinner *ngIf="isLoading"></ion-spinner>
+  <div class="container">
+    <ion-spinner *ngIf="isLoading"></ion-spinner>
 
-  <div class="container" *ngIf="!isLoading">
-    <!-- Carrusel de fotos -->
-    <div class="photo-carousel" *ngIf="lugar.photos?.length > 0">
-      <button class="prev" (click)="prevPhoto()">&#10094;</button>
-      <img
-        [src]="lugar.photos[lugar.currentPhotoIndex]?.url"
-        alt="{{ lugar.name }}"
-      />
-      <button class="next" (click)="nextPhoto()">&#10095;</button>
-    </div>
-
-    <!-- Información del lugar -->
-    <div class="lugar-details">
-      <h2>{{ lugar.name }}</h2>
-      <p>{{ lugar.description }}</p>
-      <p><strong>Ciudad:</strong> {{ lugar.city }}</p>
-      <p><strong>Precio por noche:</strong> ${{ lugar.pricePerNight }}</p>
-      <p><strong>Costo de limpieza:</strong> ${{ lugar.cleaningCost }}</p>
-    </div>
-
-    <!-- Lista de reservas -->
-    <div class="reservas-list">
-      <h3>Reservas</h3>
-      <div *ngIf="reservas.length === 0" class="no-reservas">
-        <p>No hay reservas para este lugar.</p>
+    <div class="lugar-container" *ngIf="!isLoading">
+      <div class="photo-carousel" *ngIf="lugar.photos?.length > 0">
+        <button class="prev" (click)="prevPhoto()">&#10094;</button>
+        <img
+          [src]="lugar.photos[lugar.currentPhotoIndex]"
+          alt="{{ lugar.name }}"
+          class="photo"
+        />
+        <button class="next" (click)="nextPhoto()">&#10095;</button>
       </div>
-      <ng-container *ngIf="reservas.length > 0">
-        <div class="reserva-card" *ngFor="let reserva of reservas">
-          <h4>Reserva ID: {{ reserva.id }}</h4>
-          <p><strong>Cliente:</strong> {{ reserva.customer }}</p>
-          <p><strong>Email:</strong> {{ reserva.customerEmail }}</p>
-          <p><strong>Teléfono:</strong> {{ reserva.customerPhone }}</p>
-          <p><strong>Fechas:</strong> {{ reserva.startDate }} - {{ reserva.endDate }}</p>
-          <p><strong>Precio Total:</strong> ${{ reserva.totalPrice }}</p>
+
+      <div class="lugar-details">
+        <h2>{{ lugar.name }}</h2>
+        <p>{{ lugar.description }}</p>
+        <p><ion-icon name="location-outline"></ion-icon> {{ lugar.city }}</p>
+        <p><ion-icon name="cash-outline"></ion-icon> Precio por noche: ${{ lugar.pricePerNight }}</p>
+        <p><ion-icon name="sparkles-outline"></ion-icon> Costo de limpieza: ${{ lugar.cleaningCost }}</p>
+        <p><ion-icon name="people-outline"></ion-icon> Capacidad: {{ lugar.capacity }} personas</p>
+        <p><ion-icon name="bed-outline"></ion-icon> Habitaciones: {{ lugar.rooms }}</p>
+        <p><ion-icon name="water-outline"></ion-icon> Baños: {{ lugar.bathrooms }}</p>
+        <p><ion-icon name="wifi-outline"></ion-icon> WiFi: {{ lugar.wifi }}</p>
+        <p><ion-icon name="car-outline"></ion-icon> Estacionamiento: {{ lugar.parking }}</p>
+      </div>
+
+      <div class="owner-details">
+        <h3>Arrendatario</h3>
+        <p><ion-icon name="person-outline"></ion-icon> {{ lugar.owner.name }}</p>
+        <p><ion-icon name="mail-outline"></ion-icon> {{ lugar.owner.email }}</p>
+        <p><ion-icon name="call-outline"></ion-icon> {{ lugar.owner.phone }}</p>
+      </div>
+
+      <div class="reservas-list">
+        <h3>Reservas</h3>
+        <div *ngIf="reservas.length === 0" class="no-reservas">
+          <p>No hay reservas para este lugar.</p>
         </div>
-      </ng-container>
+        <ng-container *ngIf="reservas.length > 0">
+          <div class="reserva-card" *ngFor="let reserva of reservas">
+            <div class="reserva-details">
+              <p>
+                <ion-icon name="person-circle-outline"></ion-icon>
+                <strong>Cliente:</strong> {{ reserva.customer }}
+              </p>
+              <p>
+                <ion-icon name="mail-outline"></ion-icon>
+                <strong>Email:</strong> {{ reserva.customerEmail }}
+              </p>
+              <p>
+                <ion-icon name="call-outline"></ion-icon>
+                <strong>Teléfono:</strong> {{ reserva.customerPhone }}
+              </p>
+            </div>
+            <div class="reserva-fechas-precio">
+              <p>
+                <ion-icon name="calendar-outline"></ion-icon>
+                <strong>Fechas:</strong> {{ reserva.startDate }} - {{ reserva.endDate }}
+              </p>
+              <p>
+                <ion-icon name="cash-outline"></ion-icon>
+                <strong>Precio Total:</strong> ${{ reserva.totalPrice }}
+              </p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
     </div>
   </div>
 </ion-content>

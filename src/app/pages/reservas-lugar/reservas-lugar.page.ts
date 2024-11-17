@@ -34,11 +34,17 @@ export class ReservasLugarPage implements OnInit {
           city: data.ciudad,
           pricePerNight: data.precioNoche,
           cleaningCost: data.costoLimpieza,
-          latitude: data.latitud,
-          longitude: data.longitud,
-          photos: data.fotos.map((photo: any) => ({
-            url: photo.url,
-          })),
+          capacity: data.cantPersonas,
+          rooms: data.cantHabitaciones,
+          bathrooms: data.cantBanios,
+          wifi: data.tieneWifi ? 'Sí' : 'No',
+          parking: data.cantVehiculosParqueo,
+          owner: {
+            name: data.arrendatario.nombrecompleto,
+            email: data.arrendatario.email,
+            phone: data.arrendatario.telefono,
+          },
+          photos: data.fotos.map((photo: any) => photo.url),
           currentPhotoIndex: 0, // Inicializa el índice actual de fotos
         };
         this.reservas = data.reservas.map((reserva: any) => ({
